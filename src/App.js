@@ -1,8 +1,9 @@
 import './App.css';
-import Recipe from './components/Recipe';
 import { API_KEY } from './config.js';
+import Recipe from './components/Recipe';
+import Header from './components/Header';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 	const [recipes, setRecipes] = useState([]);
@@ -26,21 +27,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Hello!</h1>
-			<form className="search-form">
-				<input className="search-bar" type="text" />
-				<button className="search-button" type="submit">
-					Search
-				</button>
-			</form>
-			{recipes.length &&
-				recipes.map((recipe) => (
-					<Recipe
-						key={recipe.id}
-						title={recipe.title}
-						image={`https://spoonacular.com/recipeImages/${recipe.image}`}
-					/>
-				))}
+			<Header />
+			<Recipe recipes={recipes} />
 		</div>
 	);
 }

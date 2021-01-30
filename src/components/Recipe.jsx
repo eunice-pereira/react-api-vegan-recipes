@@ -1,13 +1,20 @@
 import React from 'react';
+import RecipeCard from './RecipeCard';
 
-const Recipe = ({ title, image }) => {
+// Recipe is parent component to RecipeCard
+
+const Recipe = ({ recipes }) => {
 	return (
-		<div>
-			<h1>Title: {title}</h1>
-			<img src={image} alt="" width="300px"></img>
-			<p>Summary</p>
-			<p>Ingredients</p>
-			<p>Instructions</p>
+		<div className="recipe-info">
+			{recipes.length &&
+				recipes.map((recipe) => (
+					<RecipeCard
+						key={recipe.id}
+						title={recipe.title}
+						image={`https://spoonacular.com/recipeImages/${recipe.image}`}
+						prepTime={recipe.readyInMinutes}
+					/>
+				))}
 		</div>
 	);
 };
