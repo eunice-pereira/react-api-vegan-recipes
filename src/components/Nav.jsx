@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Nav = () => {
 	return (
 		<div>
 			<h1>Plant Powered 🌱</h1>
@@ -8,4 +8,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default Nav;

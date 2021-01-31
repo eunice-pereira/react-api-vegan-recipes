@@ -1,7 +1,17 @@
 import './App.css';
 import { API_KEY } from './config.js';
 import Recipe from './components/Recipe';
-import Header from './components/Header';
+import Nav from './components/Nav';
+import Learn from './components/Learn';
+import About from './components/About';
+
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	Redirect,
+} from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
@@ -10,7 +20,7 @@ function App() {
 
 	async function getRecipe() {
 		const response = await fetch(
-			`https://api.spoonacular.com/recipes/search?diet=vegan&number=10&apiKey=${API_KEY}`,
+			`https://api.spoonacular.com/recipes/search?diet=vegan&type=breakfast&apiKey=${API_KEY}`,
 			{
 				headers: {
 					Accept: 'application/json',
@@ -26,10 +36,12 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App">
-			<Header />
-			<Recipe recipes={recipes} />
-		</div>
+		<Router>
+			<div className="App">
+				<Nav />
+				<Recipe recipes={recipes} />
+			</div>
+		</Router>
 	);
 }
 
