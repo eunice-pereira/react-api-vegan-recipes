@@ -6,15 +6,14 @@ import RecipeCard from './RecipeCard';
 const Recipe = ({ recipes }) => {
 	return (
 		<div className="recipe-info">
-			{recipes.length &&
-				recipes.map((recipe) => (
-					<RecipeCard
-						key={recipe.id}
-						title={recipe.title}
-						image={`https://spoonacular.com/recipeImages/${recipe.image}`}
-						prepTime={recipe.readyInMinutes}
-					/>
-				))}
+			{recipes.map((recipe) => (
+				<RecipeCard
+					key={recipe.id}
+					title={recipe.title}
+					image={`https://spoonacular.com/recipeImages/${recipe.image}`}
+					prepTime={recipe.readyInMinutes}
+				/>
+			))}
 		</div>
 	);
 };
