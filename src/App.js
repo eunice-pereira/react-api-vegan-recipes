@@ -17,32 +17,47 @@ import {
 	Redirect,
 } from 'react-router-dom';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
 	const [recipes, setRecipes] = useState([]);
 
 	async function getRecipe(recipeType) {
+		console.log('****get recipe fetch***');
 		const response = await fetch(
 			`https://api.spoonacular.com/recipes/search?diet=vegan&type=${recipeType}&apiKey=${API_KEY}`,
 			{
 				headers: {
-					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Headers':
+						'Accept, Authorization,Accept-Language, Content-Language, Content-Type, Cache-Control, Origin, X-Requested-With',
 				},
 			}
 		);
 		const data = await response.json();
 		setRecipes(data.results);
+		console.log(data.results);
+
+		// function clearRecipe() {
+		// 	setRecipes([])
+		// }
+
+		// function clearRecipe()
+		// call setRecipes([])
+		// trigger with onClick
 	}
 	console.log(recipes);
-	useEffect(() => {
-		getRecipe();
-	}, []);
+	// console.log(summary, '*****app****');
+	// useEffect(() => {
+	// 	getRecipe();
+	// }, []);
 
 	return (
 		<Router>
 			<div className="App">
 				<Nav />
+
 				<Breakfast recipes={recipes} getRecipe={getRecipe} />
 				<Lunch recipes={recipes} getRecipe={getRecipe} />
 				<Appetizer recipes={recipes} getRecipe={getRecipe} />

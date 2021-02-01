@@ -3,6 +3,7 @@ import Recipe from './Recipe';
 import SearchButton from './SearchButton';
 
 const Breakfast = ({ recipes, getRecipe }) => {
+	// console.log(summary, '***Breakfast****');
 	return (
 		<div className="recipes">
 			<h1>Breakfast</h1>
