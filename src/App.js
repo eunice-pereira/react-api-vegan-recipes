@@ -37,16 +37,13 @@ function App() {
 		const data = await response.json();
 		setRecipes(data.results);
 		console.log(data.results);
-
-		// function clearRecipe() {
-		// 	setRecipes([])
-		// }
-
-		// function clearRecipe()
-		// call setRecipes([])
-		// trigger with onClick
 	}
 	console.log(recipes);
+
+	// clears api fetch
+	function clearRecipe() {
+		setRecipes([]);
+	}
 
 	useEffect(() => {
 		getRecipe();
@@ -55,7 +52,7 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<Nav />
+				<Nav clearRecipe={clearRecipe} />
 				<Breakfast recipes={recipes} getRecipe={getRecipe} />
 				<Lunch recipes={recipes} getRecipe={getRecipe} />
 				<Appetizer recipes={recipes} getRecipe={getRecipe} />
