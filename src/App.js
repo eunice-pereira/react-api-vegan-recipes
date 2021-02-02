@@ -17,13 +17,12 @@ import {
 	Redirect,
 } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 	const [recipes, setRecipes] = useState([]);
 
 	async function getRecipe(recipeType) {
-		console.log('****get recipe fetch***');
 		const response = await fetch(
 			`https://api.spoonacular.com/recipes/search?diet=vegan&type=${recipeType}&apiKey=${API_KEY}`,
 			{
@@ -48,16 +47,15 @@ function App() {
 		// trigger with onClick
 	}
 	console.log(recipes);
-	// console.log(summary, '*****app****');
-	// useEffect(() => {
-	// 	getRecipe();
-	// }, []);
+
+	useEffect(() => {
+		getRecipe();
+	}, []);
 
 	return (
 		<Router>
 			<div className="App">
 				<Nav />
-
 				<Breakfast recipes={recipes} getRecipe={getRecipe} />
 				<Lunch recipes={recipes} getRecipe={getRecipe} />
 				<Appetizer recipes={recipes} getRecipe={getRecipe} />
